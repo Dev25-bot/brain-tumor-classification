@@ -1,6 +1,26 @@
 {
-  "best_model": "custom_cnn",
+  "best_model": "efficientnet",
   "results": [
+    {
+      "model": "efficientnet",
+      "accuracy": 0.977116704805492,
+      "precision": 0.9772569944470216,
+      "recall": 0.977116704805492,
+      "f1": 0.9770386869446197,
+      "params_millions": 4.012672,
+      "size_mb": 16.34547,
+      "ms_per_image": 4.071874587337912
+    },
+    {
+      "model": "mobilenet",
+      "accuracy": 0.9466056445461479,
+      "precision": 0.946953057839703,
+      "recall": 0.9466056445461479,
+      "f1": 0.9465646815215593,
+      "params_millions": 2.228996,
+      "size_mb": 9.156474,
+      "ms_per_image": 2.8614353226544638
+    },
     {
       "model": "custom_cnn",
       "accuracy": 0.927536231884058,
@@ -9,7 +29,7 @@
       "f1": 0.926879356045404,
       "params_millions": 1.206628,
       "size_mb": 4.851298,
-      "ms_per_image": 20.377252066361557
+      "ms_per_image": 11.796018434019834
     }
   ]
 }

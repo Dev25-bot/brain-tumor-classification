@@ -19,23 +19,41 @@ models (EfficientNet-B0, MobileNetV2, ResNet50), full evaluation and comparison,
 
 Evaluated on the held-out **Testing** set (1,311 images).
 
-| Model | Accuracy | Precision | Recall | F1 | Params | Size |
-|---|---|---|---|---|---|---|
-| Custom CNN | 92.75% | 0.927 | 0.928 | 0.927 | 1.2M | 4.9 MB |
-| EfficientNet-B0 | *training* | | | | | |
-| MobileNetV2 | *training* | | | | | |
+| Model | Accuracy | Precision | Recall | F1 | Params | Size | Inference* |
+|---|---|---|---|---|---|---|---|
+| **EfficientNet-B0** (best) | **97.71%** | 0.977 | 0.977 | 0.977 | 4.0M | 16.3 MB | 4.1 ms |
+| MobileNetV2 | 94.66% | 0.947 | 0.947 | 0.947 | 2.2M | 9.2 MB | 2.9 ms |
+| Custom CNN | 92.75% | 0.927 | 0.928 | 0.927 | 1.2M | 4.9 MB | 11.8 ms |
 
-Custom CNN per-class results:
+\*Per image, batch of 32 on an Apple M2 GPU, measured while other jobs were running — treat as a rough comparison.
 
-| Class | Precision | Recall | F1 |
+**Model choice:** EfficientNet-B0 is the most accurate on every class and is still small and fast, so the
+Streamlit app uses it by default. MobileNetV2 is the lightest pretrained option; the Custom CNN, trained from
+scratch with ~1.2M parameters, reaches 92.75% and shows how much ImageNet pretraining adds (+5 points).
+
+Per-class F1 on the test set:
+
+| Class | EfficientNet-B0 | MobileNetV2 | Custom CNN |
 |---|---|---|---|
-| glioma | 0.957 | 0.887 | 0.920 |
-| meningioma | 0.860 | 0.840 | 0.850 |
-| notumor | 0.939 | 0.985 | 0.961 |
-| pituitary | 0.951 | 0.980 | 0.966 |
+| glioma | 0.974 | 0.933 | 0.920 |
+| meningioma | 0.962 | 0.892 | 0.850 |
+| notumor | 0.993 | 0.980 | 0.961 |
+| pituitary | 0.975 | 0.970 | 0.966 |
 
-Meningioma is the hardest class (misclassified as no tumour 25×, pituitary 14×, glioma 10×), and the
-most common single error is glioma predicted as meningioma (32 images).
+Meningioma is the hardest class for every model. For the Custom CNN, the most common error is glioma
+predicted as meningioma (32 images); EfficientNet-B0 reduces that to 2.
+
+### EfficientNet-B0
+
+![EfficientNet-B0 training history](models/efficientnet_history.png)
+![EfficientNet-B0 confusion matrix](models/efficientnet_cm.png)
+
+### MobileNetV2
+
+![MobileNetV2 training history](models/mobilenet_history.png)
+![MobileNetV2 confusion matrix](models/mobilenet_cm.png)
+
+### Custom CNN
 
 ![Custom CNN training history](models/custom_cnn_history.png)
 ![Custom CNN confusion matrix](models/custom_cnn_cm.png)
