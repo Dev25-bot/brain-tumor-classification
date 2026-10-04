@@ -1,0 +1,15 @@
+{
+  "best_model": "custom_cnn",
+  "results": [
+    {
+      "model": "custom_cnn",
+      "accuracy": 0.927536231884058,
+      "precision": 0.9273283788984785,
+      "recall": 0.927536231884058,
+      "f1": 0.926879356045404,
+      "params_millions": 1.206628,
+      "size_mb": 4.851298,
+      "ms_per_image": 20.377252066361557
+    }
+  ]
+}

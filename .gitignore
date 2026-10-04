@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Env
+env/
+venv/
+.venv/
+
+# Dataset (download from Kaggle, see README)
+data/
+
+# Trained models are committed (they are small); ResNet50 is ~95 MB, keep it out
+models/resnet50.pth
+
+# Misc
+*.log
+.DS_Store
